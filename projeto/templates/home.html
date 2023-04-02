@@ -32,11 +32,11 @@
         var euro = "{{EUR}}";
         var real = "{{BRL}}";
         var iene = "{{JPY}}";
-        var datas = "{{datas}}";
 
         euro = euro.slice(1, euro.length-1).split(',');
         real = real.slice(1, real.length-1).split(',');
         iene = iene.slice(1, iene.length-1).split(',');
+
 
         for (i=0;i<euro.length;i++){
             euro[i] = parseFloat(euro[i]);

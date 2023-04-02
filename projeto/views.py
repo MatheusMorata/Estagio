@@ -17,14 +17,16 @@ def cotacao(data):
             'JPY':JPY}
     return json
 
+
     
 def home(request):
-    data_hoje = datetime.datetime.now()#Aqui ela captura a data de hoje
-
+    template = "home.html"
     valores_euro = []
     valores_real = []
     valores_iene = []
     d = []
+
+    data_hoje = datetime.datetime.now()#Aqui ela captura a data de hoje
 
     for i in range(0,5):
         dia = data_hoje.day - i
@@ -41,4 +43,4 @@ def home(request):
         'JPY':valores_iene,
         'datas':d}
 
-    return render(request,"home.html",c)
+    return render(request,template,c)

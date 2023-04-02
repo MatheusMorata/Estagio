@@ -1,0 +1,94 @@
+<!DOCKTYPE html>
+<html lang = "pt-br">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Home</title>  
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <link  rel="stylesheet"  href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"  integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"  crossorigin="anonymous">
+
+
+</head>
+<body>    
+      <div class="card" style="width: 18rem;"> 
+      <form id = "formulario">
+        <div class="form-group">
+          <label for="dataInicio">Data de inicio</label>
+          <input type="date" class="form-control" id="dataInicio" aria-describedby="emailHelp" placeholder="Enter email">
+          
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Data de fim</label>
+          <input type="date" class="form-control" id="exampleInputPassword1" placeholder="dataFim">
+        </div>
+        <button type="submit" class="btn btn-primary">Buscar</button>
+      </form>  
+    </div> 
+
+    <div class="container-sm"></div>
+
+    <div id="container"></div>
+    
+    <script type="text/javascript">
+        var euro = "{{EUR}}";
+        var real = "{{BRL}}";
+        var iene = "{{JPY}}";
+
+        euro = euro.slice(1, euro.length-1).split(',');
+        real = real.slice(1, real.length-1).split(',');
+        iene = iene.slice(1, iene.length-1).split(',');
+
+        for (i=0;i<euro.length;i++){
+            euro[i] = parseFloat(euro[i]);
+            real[i] = parseFloat(real[i]);
+            iene[i] = parseFloat(iene[i]);
+        }
+
+        
+
+        let form = document.getElementById("formulario")
+        form.addEventListener("submit",(teste)=> {
+            event.preventDefault()
+            let input1 = document.getElementById("dataInicio")
+            let input2 = document.getElementById("dataFim")
+        }
+        )
+        
+            
+
+        document.addEventListener('DOMContentLoaded', () =>{
+                Highcharts.chart('container', {
+                xAxis: {
+                    categories: ['BRL', 'EUR', 'JPY']
+                }, 
+                title: {
+                    text: 'Cotações com base no dólar'
+                },
+                yAxis: {
+                    title: {
+                        text: 'Cotações'
+                    }
+                },
+                series: [{
+                    name: 'BRL',
+                    data:  real,
+                },
+                {
+                    name: 'EUR',
+                    data: euro,
+                },
+                {
+                    name: 'JPY',
+                    data: iene,
+                }
+                ]
+            });
+        });
+    </script>
+
+    <script  src="https://code.jquery.com/jquery-3.3.1.slim.min.js"  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"  crossorigin="anonymous"></script>
+    <script  src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"  integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"  crossorigin="anonymous"></script>
+    <script  src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"  integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"  crossorigin="anonymous"></script>
+
+    
+</body>
+</html>

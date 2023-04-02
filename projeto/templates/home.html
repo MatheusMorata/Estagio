@@ -32,6 +32,7 @@
         var euro = "{{EUR}}";
         var real = "{{BRL}}";
         var iene = "{{JPY}}";
+        var datas = "{{datas}}";
 
         euro = euro.slice(1, euro.length-1).split(',');
         real = real.slice(1, real.length-1).split(',');
@@ -44,7 +45,7 @@
         }
 
         
-
+        //Aqui ele captura as datas do formulario
         let form = document.getElementById("formulario")
         form.addEventListener("submit",(teste)=> {
             event.preventDefault()

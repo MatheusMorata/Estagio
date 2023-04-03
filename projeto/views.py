@@ -1,6 +1,16 @@
 from django.shortcuts import render
 import requests as r
-import datetime 
+from datetime import date 
+
+#Função para verificar se uma determinada data é dia util
+def dia_util(dia):
+    dia = dia.split("-")
+    dia_tupla = date(year=int(dia[0]), month=int(dia[1]), day=int(dia[2]))
+    n = dia_tupla.weekday()
+    if n < 5:
+        return True
+    else: 
+        return False
 
 
 def cotacao(data):
@@ -17,7 +27,6 @@ def cotacao(data):
             'JPY':JPY}
     return json
 
-
     
 def home(request):
     template = "home.html"
@@ -26,16 +35,22 @@ def home(request):
     valores_iene = []
     d = []
 
-    data_hoje = datetime.datetime.now()#Aqui ela captura a data de hoje
+    data_hoje = date.today()
+    dia = data_hoje.day
 
     for i in range(0,5):
-        dia = data_hoje.day - i
-        if (dia >= 1) and (dia <= 31):
-            data = str(data_hoje.year) + "-" + str(data_hoje.month) + "-" + str(dia) #Aqui ele formata a data que vai ser usada na requisição
-            d.append(data)
-            valores_euro.append(round(cotacao(data)['EUR'],2))
-            valores_real.append(round(cotacao(data)['BRL'],2))
-            valores_iene.append(round(cotacao(data)['JPY'],2))
+        dia = dia - i
+        data = str(data_hoje.year) + "-" + str(data_hoje.month) + "-" + str(dia) #Aqui ele formata a data
+        if (dia >= 1 and dia <= 31):
+            if (dia_util(data) == True):
+                d.append(data)
+                valores_euro.append(round(cotacao(data)['EUR'],2))
+                valores_real.append(round(cotacao(data)['BRL'],2))
+                valores_iene.append(round(cotacao(data)['JPY'],2))
+        else:
+            valores_euro.append(0)
+            valores_real.append(0)
+            valores_iene.append(0)
 
 
     c = {'EUR':valores_euro,

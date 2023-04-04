@@ -54,16 +54,39 @@ def home(request):
                 valores_euro.append(0)
                 valores_real.append(0)
                 valores_iene.append(0)
-                
-    #Aqui estou recebendo as datas do formulário
+
+    #Aqui estou recebendo os dados do formulário
     if request.method == "POST":
         dataInicio = request.POST.get('dataInicio',None)
         dataFim = request.POST.get('dataFim',None)
 
+        dataInicio = dataInicio.split("-")
+        dataFim = dataFim.split("-")
+
+        dataInicio = date(year=int(dataInicio[0]), month=int(dataInicio[1]), day=int(dataInicio[2]))
+        dataFim = date(year=int(dataFim[0]), month=int(dataFim[1]), day=int(dataFim[2]))
+        segundos = (dataFim - dataInicio).total_seconds() #Cálculo da diferença, em segundos, entre os dois dias
+
+        #Diferença menor ou igual a 5 dias.
+        if segundos <= 432000:
+            data = str(dataInicio.year) + "-" + str(dataInicio.month) + "-" + str(dataInicio.day)
+            if (dia_util(data) == True):
+                valores_euro.append(round(cotacao(data)['EUR'],2))
+                valores_real.append(round(cotacao(data)['BRL'],2))
+                valores_iene.append(round(cotacao(data)['JPY'],2))
+            else:
+                valores_euro.append(0)
+                valores_real.append(0)
+                valores_iene.append(0)
+
+        #Diferença maior que 5 dias.
+        else:
+            valores_euro = [0,0,0,0,0]
+            valores_real = [0,0,0,0,0]
+            valores_iene = [0,0,0,0,0]
 
     c = {'EUR':valores_euro,
         'BRL':valores_real,
         'JPY':valores_iene}
-    
 
     return render(request,template,c)

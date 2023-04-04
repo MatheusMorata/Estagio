@@ -33,17 +33,15 @@ def home(request):
     valores_euro = []
     valores_real = []
     valores_iene = []
-    d = []
 
     data_hoje = date.today()
     dia = data_hoje.day
 
     for i in range(0,5):
-        dia = dia - i
-        data = str(data_hoje.year) + "-" + str(data_hoje.month) + "-" + str(dia) #Aqui ele formata a data
-        if (dia >= 1 and dia <= 31):
+        novo_dia = dia - i
+        data = str(data_hoje.year) + "-" + str(data_hoje.month) + "-" + str(novo_dia) #Aqui ele formata a data
+        if (novo_dia >= 1 and novo_dia <= 31):
             if (dia_util(data) == True):
-                d.append(data)
                 valores_euro.append(round(cotacao(data)['EUR'],2))
                 valores_real.append(round(cotacao(data)['BRL'],2))
                 valores_iene.append(round(cotacao(data)['JPY'],2))
@@ -55,7 +53,6 @@ def home(request):
 
     c = {'EUR':valores_euro,
         'BRL':valores_real,
-        'JPY':valores_iene,
-        'datas':d}
+        'JPY':valores_iene}
 
     return render(request,template,c)

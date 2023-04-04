@@ -29,33 +29,37 @@ def cotacao(data):
 
     
 def home(request):
-    if request.method == "POST":
-        print("Tu e o brabo")
-
     template = "home.html"
     valores_euro = []
     valores_real = []
     valores_iene = []
 
-    data_hoje = date.today()
-    dia = data_hoje.day
+    if request.method == "GET":
+        data_hoje = date.today()
+        dia = data_hoje.day
 
-    for i in range(0,5):
-        novo_dia = dia - i
-        data = str(data_hoje.year) + "-" + str(data_hoje.month) + "-" + str(novo_dia) #Aqui ele formata a data
-        if (novo_dia >= 1 and novo_dia <= 31):
-            if (dia_util(data) == True):
-                valores_euro.append(round(cotacao(data)['EUR'],2))
-                valores_real.append(round(cotacao(data)['BRL'],2))
-                valores_iene.append(round(cotacao(data)['JPY'],2))
+        for i in range(0,5):
+            novo_dia = dia - i
+            data = str(data_hoje.year) + "-" + str(data_hoje.month) + "-" + str(novo_dia) #Aqui ele formata a data
+            if (novo_dia >= 1 and novo_dia <= 31):
+                if (dia_util(data) == True):
+                    valores_euro.append(round(cotacao(data)['EUR'],2))
+                    valores_real.append(round(cotacao(data)['BRL'],2))
+                    valores_iene.append(round(cotacao(data)['JPY'],2))
+                else:
+                    valores_euro.append(0)
+                    valores_real.append(0)
+                    valores_iene.append(0)
             else:
                 valores_euro.append(0)
                 valores_real.append(0)
                 valores_iene.append(0)
-        else:
-            valores_euro.append(0)
-            valores_real.append(0)
-            valores_iene.append(0)
+                
+    #Aqui estou recebendo as datas do formulário
+    if request.method == "POST":
+        dataInicio = request.POST.get('dataInicio',None)
+        dataFim = request.POST.get('dataFim',None)
+
 
     c = {'EUR':valores_euro,
         'BRL':valores_real,

@@ -17,7 +17,7 @@
             <input type="date" name="dataInicio" class="form-control" id="dataInicio" aria-describedby="emailHelp" placeholder="Enter email">
             <label for="exampleInputPassword1">Data de fim</label>
             <input type="date" name="dataFim" class="form-control" id="exampleInputPassword1" placeholder="dataFim">
-            <input type="submit" class="btn btn-primary" value="teste">
+            <input type="submit" class="btn btn-primary" value="Consultar">
 
         </div>
       </form>  
@@ -31,6 +31,7 @@
         var euro = "{{EUR}}";
         var real = "{{BRL}}";
         var iene = "{{JPY}}";
+        var cotacoes = "{{dias}}"; 
 
         euro = euro.slice(1, euro.length-1).split(',');
         real = real.slice(1, real.length-1).split(',');
@@ -42,13 +43,7 @@
             real[i] = parseFloat(real[i]);
             iene[i] = parseFloat(iene[i]);
         }
-
-        euro.reverse();
-        real.reverse();
-        iene.reverse();
-        
-        
-            
+                 
 
         document.addEventListener('DOMContentLoaded', () =>{
                 Highcharts.chart('container', {

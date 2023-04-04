@@ -45,6 +45,10 @@ def home(request):
                 valores_euro.append(round(cotacao(data)['EUR'],2))
                 valores_real.append(round(cotacao(data)['BRL'],2))
                 valores_iene.append(round(cotacao(data)['JPY'],2))
+            else:
+                valores_euro.append(0)
+                valores_real.append(0)
+                valores_iene.append(0)
         else:
             valores_euro.append(0)
             valores_real.append(0)

@@ -29,6 +29,9 @@ def cotacao(data):
 
     
 def home(request):
+    if request.method == "POST":
+        print("Tu e o brabo")
+
     template = "home.html"
     valores_euro = []
     valores_real = []
@@ -54,9 +57,9 @@ def home(request):
             valores_real.append(0)
             valores_iene.append(0)
 
-
     c = {'EUR':valores_euro,
         'BRL':valores_real,
         'JPY':valores_iene}
+    
 
     return render(request,template,c)

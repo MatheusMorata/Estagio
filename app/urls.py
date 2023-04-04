@@ -3,5 +3,5 @@ from django.urls import path
 from projeto.views import home
 
 urlpatterns = [
-    path('home/',home),
+    path('home/',home,name="home"),
 ]

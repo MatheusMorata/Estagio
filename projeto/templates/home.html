@@ -44,8 +44,11 @@
             iene[i] = parseFloat(iene[i]);
         }
 
+        euro.reverse();
+        real.reverse();
+        iene.reverse();
         
-        //Aqui ele captura as datas do formulario
+        //Aqui ele captura as datas do formulário
         let form = document.getElementById("formulario")
         form.addEventListener("submit",(teste)=> {
             event.preventDefault()

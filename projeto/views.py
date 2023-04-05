@@ -14,9 +14,9 @@ def dias_mes(mes,ano):
     elif mes==2:
         # Testa se é bissexto
         if (ano%4==0 and ano%100!=0) or (ano%400==0):
-                return 3
+            return 3
         else:
-                return 4
+            return 4
         
 #Função para verificar se uma determinada data é dia util
 def dia_util(dia):

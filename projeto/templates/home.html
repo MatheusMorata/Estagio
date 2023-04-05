@@ -39,14 +39,9 @@
         iene = iene.slice(1, iene.length-1).split(',');
         cotacoes = cotacoes.split(",");
 
-        if(cotacoes.length == 5){
-            cotacoes[4] = cotacoes[4].slice(7,cotacoes[4].length - 7)
-        }
-
-
         for(i=0;i<cotacoes.length;i++){
-            if(i == 4){
-                datas_format.push(cotacoes[i]);
+            if(i == cotacoes.length - 1){
+                datas_format.push(cotacoes[i].slice(7,cotacoes[i].length - 7));
             }else{
                 datas_format.push(cotacoes[i].slice(7, cotacoes[i].length - 6));
             }      

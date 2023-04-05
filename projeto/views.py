@@ -58,9 +58,6 @@ def home(request):
 
         for i in range(0,5):
             novo_dia = dia - i
-            if(novo_dia == 0):
-                novo_dia = 31
-
             data = str(data_hoje.year) + "-" + str(data_hoje.month) + "-" + str(novo_dia) #Aqui ele formata a data
             if (novo_dia >= 1 and novo_dia <= 31):
                 if (dia_util(data) == True):

@@ -74,7 +74,7 @@ def home(request):
         dataInicio = date(year=int(dataInicio[0]), month=int(dataInicio[1]), day=int(dataInicio[2]))
         dataFim = date(year=int(dataFim[0]), month=int(dataFim[1]), day=int(dataFim[2]))
         segundos = (dataFim - dataInicio).total_seconds() #Cálculo da diferença, em segundos, entre os dois dias
-        print(segundos)
+
         #Diferença menor ou igual a 5 dias.
         if segundos <= 345600:
             j = int(segundos//86400)

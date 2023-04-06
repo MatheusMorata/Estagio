@@ -53,32 +53,41 @@ def home(request):
 
     #Quando o usuário acessa a página pela 1° vez 
     if request.method == "GET":
+        dias_uteis = []
         data_hoje = date.today()
         dia = data_hoje.day
+        mes = data_hoje.month
 
-        for i in range(0,5):
-            novo_dia = dia - i
-            data = str(data_hoje.year) + "-" + str(data_hoje.month) + "-" + str(novo_dia) #Aqui ele formata a data
-            if (novo_dia >= 1 and novo_dia <= 31):
-                if (dia_util(data) == True):
-                    cotacoes_dias.append(data)
-                    valores_euro.append(round(cotacao(data)['EUR'],2))
-                    valores_real.append(round(cotacao(data)['BRL'],2))
-                    valores_iene.append(round(cotacao(data)['JPY'],2))
+        while (len(dias_uteis) < 5):  
+            data = str(data_hoje.year) + "-" + str(mes) + "-" + str(dia)
+            if(dia == 0):
+                mes = int(data_hoje.month - 1)
+                if(dias_mes(mes,int(data_hoje.year)) == 1):
+                    dia = 31
+                    data = str(data_hoje.year) + "-" + str(mes) + "-" + str(dia)
+                elif(dias_mes(mes,int(data_hoje.year)) == 2):
+                    dia = 30
+                    data = str(data_hoje.year) + "-" + str(mes) + "-" + str(dia)
+                elif(dias_mes(mes,int(data_hoje.year)) == 3):
+                    dia = 29
+                    data = str(data_hoje.year) + "-" + str(mes) + "-" + str(dia)
                 else:
-                    cotacoes_dias.append(data)
-                    valores_euro.append(0)
-                    valores_real.append(0)
-                    valores_iene.append(0)
-            else:
-                cotacoes_dias.append(data)
-                valores_euro.append(0)
-                valores_real.append(0)
-                valores_iene.append(0)
+                    dia = 28
+                    data = str(data_hoje.year) + "-" + str(mes) + "-" + str(dia)
+            if(dia_util(data) == True):
+                dias_uteis.append(data)
+            dia = dia - 1
+            
+        for i in range(0,5):
+            cotacoes_dias.append(dias_uteis[i])
+            valores_euro.append(round(cotacao(dias_uteis[i])['EUR'],2))
+            valores_real.append(round(cotacao(dias_uteis[i])['BRL'],2))
+            valores_iene.append(round(cotacao(dias_uteis[i])['JPY'],2))
+
+        cotacoes_dias.reverse()
         valores_euro.reverse()
         valores_real.reverse()
         valores_iene.reverse()
-        cotacoes_dias.reverse()
 
     #Aqui estou recebendo os dados do formulário
     if request.method == "POST":

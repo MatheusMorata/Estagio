@@ -100,8 +100,8 @@ def home(request):
         dataFim = date(year=int(dataFim[0]), month=int(dataFim[1]), day=int(dataFim[2]))
         segundos = (dataFim - dataInicio).total_seconds() #Cálculo da diferença, em segundos, entre os dois dias
 
-        #Diferença menor ou igual a 5 dias.
-        if segundos <= 345600:
+        #Diferença menor ou igual a 5 dias uteis.
+        if segundos <= 518400:
             j = int(segundos//86400)
             dia = int(dataInicio.day)
             novo_dia = dia 
@@ -132,11 +132,6 @@ def home(request):
                     valores_euro.append(round(cotacao(data)['EUR'],2))
                     valores_real.append(round(cotacao(data)['BRL'],2))
                     valores_iene.append(round(cotacao(data)['JPY'],2))
-                else:
-                    cotacoes_dias.append(data)
-                    valores_euro.append(0)
-                    valores_real.append(0)
-                    valores_iene.append(0)
                 novo_dia = novo_dia + 1
         #Diferença maior que 5 dias.
         else:

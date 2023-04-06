@@ -5,11 +5,10 @@ from datetime import date
 #Função que verifica quantos dias tem um determinado mês
 def dias_mes(mes,ano):
     # Meses com 31 dias
-    if( mes==1 or mes==3 or mes==5 or mes==7 or \
-        mes==8 or mes==10 or mes==12):
+    if mes in [1,3,5,7,8,10,12]:
             return 1
     # Meses com 30 dias
-    elif(mes==4 or mes==6 or mes==9 or mes==11):
+    elif mes in [4,6,9,11]:
             return 2
     elif mes==2:
         # Testa se é bissexto

@@ -7,8 +7,6 @@ SECRET_KEY = 'django-insecure-9ke@)6lu!3%e%uy1ec$8$i$9$$a16b3o9@u54okexs6qk5t&dl
 
 DEBUG = True
 
-CSRF_TRUSTED_ORIGINS = ['https://estagio-production.up.railway.app/home/']
-
 ALLOWED_HOSTS = ['*']
 
 

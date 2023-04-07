@@ -1,6 +1,9 @@
 from django.shortcuts import render
 import requests as r
 from datetime import date 
+from django.views.decorators.csrf import csrf_exempt
+
+
 
 #Função que verifica quantos dias tem um determinado mês
 def dias_mes(mes,ano):
@@ -42,7 +45,7 @@ def cotacao(data):
             'JPY':JPY}
     return json
 
-    
+@csrf_exempt
 def home(request):
     template = "home.html"
     cotacoes_dias = []

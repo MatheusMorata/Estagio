@@ -1,3 +1,4 @@
+
 <!DOCKTYPE html>
 <html lang = "pt-br">
 <head>
@@ -8,10 +9,12 @@
 
 
 </head>
-<body>    
+<body> 
+
     <div class="card" style="width: 18rem;"> 
       <form action= "{%url 'home' %}" method="post" id="formulario">
         {% csrf_token %}
+
         <div class="form-group">
             <label for="dataInicio">Data de inicio</label>
             <input type="date" name="dataInicio" class="form-control" id="dataInicio" aria-describedby="emailHelp" placeholder="Enter email">

@@ -6,4 +6,4 @@
 - [x]  É possível informar uma data de início e de fim para consultar qualquer período de tempo, contanto que seja de no máximo 5 dias úteis(Considerar de segunda à sexta como dia útil).
 - [x]  É possível variar as moedas (real, euro e iene).
 - [ ]   API para realizar leitura das cotações persistidas no banco de dados
-- [ ]  Deploy em um servidor.
+- [x]  Deploy em um servidor.
